@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>CoffeeScript WebGL ARP Signing Avatar: vhg.2019</title>
+
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+<meta http-equiv="Access-Control-Allow-Methods" content="GET">
+
+<link rel="stylesheet" 
+         href = "{{ url_for('static', filename = 'cwasa.css') }}" />
+<script type = "text/javascript" 
+         src = "{{ url_for('static', filename = 'allcsa.js') }}" ></script>
+
+
+
+</head>
+
+<body onload="CWASA.init();">
+
+         <h1 align="center">English to Sign</h1>
+
+         <div align="center">
+            <h4>INPUT</h4>
+            <form action = "http://localhost:5000/result" method = "POST">
+               <p><input type = "text" name = "Sentence" /></p>
+               <p><input type = "submit" value = "ANIMATE" /></p>
+            </form>
+            <h4>PREPROCESSING</h4>
+            <table border = 1>
+                  <tr>
+                     <th> Input </th>
+                     <td> {{ sentence }} </td>
+                  </tr>
+                  <tr>
+                     <th> Tokenized </th>
+                     <td> {{ tokens }} </td>
+                  </tr>
+                  <tr>
+                     <th> POS-Tagged </th>
+                     <td> {{ tagged }} </td>
+                  </tr>
+            </table>
+            <br />
+
+            <h4>OMISSION</h4>
+            <table border = 1>
+                  <tr>
+                     <th> Raw </th>
+                     <td> {{ tagged }} </td>
+                  </tr>
+                     <th> Filtered </th>
+                     <td> {{ filtered }} </td>
+                  </tr>
+            </table>
+            <br />
+            <h4>PARSING</h4>
+            <table border = 1>
+                  <tr>
+                     <th> Input </th>
+                     <td> {{ filtered }} </td>
+                  </tr>
+                     <th> Grammar </th>
+                     <td> {{ source_grammar }} </td>
+                  </tr>
+            </table>
+            <br />
+            <h4>LEMMATIZATION</h4>
+            <table border = 1>
+                  <tr>
+                     <th> Input </th>
+                     <td> {{ filtered }} </td>
+                  </tr>
+                     <th> Lemmatized </th>
+                     <td> {{ lemmatized }} </td>
+                  </tr>
+            </table>
+            <br />
+         <h4>ANIMATION</h4>
+      </div>
+      <div class="CWASAPanel av0" align="center" ></div>
+
+   </body>
+</html>

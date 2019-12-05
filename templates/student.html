@@ -1,0 +1,19 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" 
+         href = "{{ url_for('static', filename = 'cwasa.css') }}" />
+<body>
+	<br />
+	<h1 align="center">English to Sign</h1>
+
+    <div align="center">
+    	<h4>INPUT</h4>
+    	<form action = "http://localhost:5000/result" method = "POST">
+			<p><input type = "text" name = "Sentence" /></p>
+			<p><input type = "submit" value = "ANIMATE" /></p>
+		</form>
+	</div>
+	
+</body>
+</html>
