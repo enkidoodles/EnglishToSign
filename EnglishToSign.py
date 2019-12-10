@@ -7,7 +7,7 @@ from nltk.corpus import wordnet
 
 
 grammar = """
-			NP: {<DT>?<JJ>*<NN|NNS>}
+			NP: {<DT>?<JJ>*<NN|NNS|PRP>}
 			VP: {<VBD|VBG|VBN|VBP|VBZ>?<TO>?<VB>?}
 		"""
 parser = nltk.RegexpParser(grammar)
@@ -28,12 +28,20 @@ def get_wordnet_pos(word):
     return tag_dict.get(tag, wordnet.NOUN)
 
 
+def get_synonym(word):
+  synonyms = []
+  for syn in wordnet.synsets(word):
+    for l in syn.lemmas():
+      synonyms.append(l.name())
+  print(set(synonyms))
+
 # Get sigml for each word and store in file.
 def get_sigml(gloss_list):
   with open("static/output.sigml", "w") as fo:
     fo.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
     fo.write("<sigml>\n")
     for (key, value) in gloss_list:
+      get_synonym(key)
       file_name = "sigml/"+str.lower(key)+".sigml"
       if Path(file_name).is_file():
         with app.open_resource(file_name, "r") as fi:
